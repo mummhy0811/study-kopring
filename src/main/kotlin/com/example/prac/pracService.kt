@@ -101,10 +101,24 @@ class pracService {
         val smaller = Math.min(a, b)
 
         for(i in bigger downTo smaller step 2){ //큰 수부터 작은 수까지 2씩 감소
-            println(i);
+            println(i)
             sum += i
         }
         return sum
+    }
+
+    var StringBuilder.lastChar: Char
+        get() = get(length - 1)
+        set(value: Char) {
+            this.setCharAt(length - 1, value)
+        }
+
+    fun extensionProperty(s:String):String{
+        println("~~~")
+        val sb = StringBuilder(s)
+        sb.lastChar = '~'
+        println(sb.toString())
+        return sb.toString()
     }
 
 
