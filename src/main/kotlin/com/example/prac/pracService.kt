@@ -1,5 +1,7 @@
 package com.example.prac
 
+import org.apache.coyote.http11.Constants.a
+import org.springframework.data.jpa.domain.AbstractPersistable_.id
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
@@ -119,6 +121,84 @@ class pracService {
         sb.lastChar = '~'
         println(sb.toString())
         return sb.toString()
+    }
+
+    //0905
+    fun arrAndMap(args:Array<String>):List<String>{
+        val list = listOf("args: ", *args) //자바와 달리 스프레드 연산자를 이용해 넘겨줘야 함(가변길이 인자를 넘기는 경우)
+        println(list)
+
+        //map을 만들 땐 mapOf사용
+        //1.to("one")또는 1 to "one" 형태로 호출
+        val map = mapOf(1 to "one", 7 to "seven", 53 to "fifty-three")
+        println(map)
+
+        return list
+    }
+
+
+    fun pracFunc2(){
+        println(1 customAdd 2)
+
+        val member = NewMember("John", 33, "seoul", "010-1234-5678")
+        saveUser(member)
+        member.saveMember() //확장함수
+    }
+    //중위연산자
+    // 함수를 중위 호출에 사용하도록 허옹하고 싶으면 infix키워드 사용
+    infix fun Int.customAdd(x: Int): Int = (this+x)*2
+
+    //꼬리재귀함수
+//    tailrec fun reccursive(n:Int, sum:Int = 0):Int{
+//        //tailrec 키워드를 붙이면 컴파일러가 꼬리재귀 최적화를 수행
+//        // 즉, 스택 오버플로우를 방지할 수 있음
+//        if(n==0) return sum
+//        else return reccursive(n-1, sum+n)
+//    }
+
+    //중첩 함수
+    /*
+    fun saveUser(user: User) {
+    if (user.name.isEmpty()) {
+        throw IllegalArgumentException(
+            "Can't save user ${user.id}: empty Name")
+    }
+
+    if (user.address.isEmpty()) {
+        throw IllegalArgumentException(
+            "Can't save user ${user.id}: empty Address")
+    }
+
+    // Save user to the database
+}
+     */
+
+    fun saveUser(user: NewMember) {
+        fun validate(value: String, fieldName: String) { // user 파라미터를 중복 사용하지 않는다.
+            if (value.isEmpty()) {
+                throw IllegalArgumentException(
+                    "Can't save user ${user.name}: " + // 바깥 함수의 파라미터에 직접 접근할 수 있다.
+                            "empty $fieldName")
+            }
+        }
+
+        validate(user.name, "Name")
+        user.address?.let { validate(it, "Address") }
+
+        // Save user to the database
+    }
+
+    //클래스를 확장한 함수
+    fun NewMember.saveMember() {
+        fun validate(value: String, fieldName: String) {
+            if (value.isEmpty()) {
+                throw IllegalArgumentException(
+                    "Can't save user $name: empty $fieldName")
+            }
+        }
+
+        validate(name, "Name")
+        address?.let { validate(it, "Address") }
     }
 
 
