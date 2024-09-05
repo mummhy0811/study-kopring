@@ -1,5 +1,6 @@
 package com.example.prac
 
+import org.apache.coyote.http11.Constants.a
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -33,4 +34,20 @@ class PracController(private val pracService: pracService) {
 
         return pracService.extensionProperty(a.toList().customJoinToString())
     }
+
+
+    //0905
+    @GetMapping("/arr")
+    fun pracArr():List<String>{
+        val arr = arrayOf("a", "b");
+        return pracService.arrAndMap(arr);
+    }
+
+    @GetMapping("/fun2")
+    fun pracFun2(){
+        pracService.pracFunc2();
+    }
+
+
+
 }
