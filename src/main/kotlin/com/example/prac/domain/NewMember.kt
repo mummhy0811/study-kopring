@@ -1,4 +1,4 @@
-package com.example.prac
+package com.example.prac.domain
 
 class NewMember(name: String, age: Int, address: String?, phone:String): Member(name, age, address) {
     var phone: String = "010-1234-5678"
