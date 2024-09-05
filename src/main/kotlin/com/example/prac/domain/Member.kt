@@ -1,4 +1,4 @@
-package com.example.prac
+package com.example.prac.domain
 
 open class Member(
     var name: String = "",

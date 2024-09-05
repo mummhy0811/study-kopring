@@ -1,7 +1,7 @@
 package com.example.prac
 
-import org.apache.coyote.http11.Constants.a
-import org.springframework.data.jpa.domain.AbstractPersistable_.id
+import com.example.prac.domain.Member
+import com.example.prac.domain.NewMember
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
