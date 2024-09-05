@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
 @Service
-class pracService {
+class Ch03Service {
     fun calcMinutes():String{
         val ld = LocalDateTime.now()
         when (ld.minute) {

@@ -1,13 +1,14 @@
 package com.example.prac
 
-import org.apache.coyote.http11.Constants.a
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class PracController(private val pracService: pracService) {
+@RequestMapping("prac/ch03")
+class Ch03Controller(private val pracService: Ch03Service) {
 
     @GetMapping("/hello")
     fun helloWorld() :String{
